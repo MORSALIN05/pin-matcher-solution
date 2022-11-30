@@ -1,6 +1,16 @@
 function pinGenerate() {
-    const pin = Math.round(Math.random() * 10000);
-    return pin;
+    const pin = getPin();
+    const pinString = pin + '';
+    if (pinString.length == 4) {
+        return pin;
+    }
+    else {
+        return pinGenerate();
+    }
+}
+function getPin() {
+    const random = Math.round(Math.random() * 10000);
+    return random;
 }
 
 document.getElementById('generate-btn').addEventListener('click', function () {
@@ -38,8 +48,8 @@ document.getElementById('submit-button').addEventListener('click', function () {
     const pinField = document.getElementById('pin-field').value;
     const typedInputValue = document.getElementById('input-value').value;
     if (pinField === typedInputValue) {
-        const succedNotify = document.getElementById('succed-notify').innerText;
-        console.log(succedNotify);
+        const succedNotify = document.getElementById('succed-notify');
+        succedNotify.style.display = 'block';
     }
     else {
         console.log('Not match');
